@@ -36,26 +36,31 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   hintText: 'Email или телефон',
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
-                        Radius.circular(15.0),
+                        Radius.elliptical(10, 10),
                       ),
-                      borderSide: BorderSide(color: Colors.grey)),
-                  fillColor: Colors.grey,
+                      borderSide: BorderSide(color: Colors.white)),
+                  fillColor: Color(0xFFF7F7F7),
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
-                        Radius.circular(15.0),
+                        Radius.elliptical(10, 10),
                       ),
-                      borderSide: BorderSide(color: Colors.grey)),
+                      borderSide: BorderSide(color: Colors.white)),
+                  filled: true,
                 ),
               ),
+              // const Divider(
+              //   color: Colors.grey,
+              // ),
               TextFormField(
                 decoration: InputDecoration(
                   hintText: 'Пароль',
                   enabledBorder: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(
-                        Radius.circular(15.0),
+                        Radius.elliptical(10, 10),
                       ),
-                      borderSide: BorderSide(color: Colors.grey)),
-                  fillColor: Colors.grey,
+                      borderSide: BorderSide(color: Colors.white)),
+                  fillColor: const Color(0xFFF7F7F7),
+                  filled: true,
                   suffixIcon: IconButton(
                     color: Colors.grey,
                     splashColor: Colors.white,
@@ -66,9 +71,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                   focusedBorder: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(
-                        Radius.circular(15.0),
+                        Radius.elliptical(10, 10),
                       ),
-                      borderSide: BorderSide(color: Colors.grey)),
+                      borderSide: BorderSide(color: Colors.white)),
                 ),
               ),
             ]),
