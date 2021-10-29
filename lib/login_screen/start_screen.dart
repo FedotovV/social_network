@@ -22,12 +22,7 @@ class _StartScreenState extends State<StartScreen> {
                 const SizedBox(
                   height: 175,
                 ),
-                Image.asset(
-                  'assets/images/VK.png',
-                  width: 100,
-                  height: 100,
-                  alignment: Alignment.center,
-                ),
+                logoVK,
                 const SizedBox(
                   height: 175,
                 ),
@@ -141,3 +136,10 @@ class _StartScreenState extends State<StartScreen> {
     );
   }
 }
+
+Image logoVK = Image.asset(
+  'assets/images/vkLogo.png',
+  width: 100,
+  height: 100,
+  alignment: Alignment.center,
+);
