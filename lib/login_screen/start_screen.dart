@@ -108,26 +108,7 @@ class _StartScreenState extends State<StartScreen> {
                 const SizedBox(
                   height: 25,
                 ),
-                OutlinedButton(
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.blueAccent),
-                      // padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                      //     const EdgeInsets.symmetric(horizontal: 100))
-                      fixedSize:
-                          MaterialStateProperty.all<Size>(const Size(365, 45)),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8))),
-                    ),
-                    onPressed: () {},
-                    child: const Text(
-                      'Войти',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.w400),
-                    ))
+                loginButton,
               ],
             ),
           ),
@@ -142,4 +123,21 @@ Image logoVK = Image.asset(
   width: 100,
   height: 100,
   alignment: Alignment.center,
+);
+
+OutlinedButton loginButton = OutlinedButton(
+  style: ButtonStyle(
+    backgroundColor: MaterialStateProperty.all<Color>(Colors.blueAccent),
+    // padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+    //     const EdgeInsets.symmetric(horizontal: 100))
+    fixedSize: MaterialStateProperty.all<Size>(const Size(365, 45)),
+    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
+  ),
+  onPressed: () {},
+  child: const Text(
+    'Войти',
+    style: TextStyle(
+        color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.w400),
+  ),
 );
