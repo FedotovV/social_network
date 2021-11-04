@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:vk_app/login_screen/start_screen.dart';
 
@@ -9,6 +11,21 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _loginController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _loginController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void _checkData() {
+    print('Login: ${_loginController.text}');
+    print('Password: ${_passwordController.text}');
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,6 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 100,
               ),
               TextFormField(
+                controller: _loginController,
                 decoration: const InputDecoration(
                   hintText: 'Email или телефон',
                   enabledBorder: OutlineInputBorder(
@@ -48,6 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
               //   color: Colors.grey,
               // ),
               TextFormField(
+                controller: _passwordController,
                 decoration: InputDecoration(
                   hintText: 'Пароль',
                   enabledBorder: const OutlineInputBorder(
@@ -75,7 +94,27 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(
                 height: 15,
               ),
-              loginButton,
+              OutlinedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.blueAccent),
+                  // padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                  //     const EdgeInsets.symmetric(horizontal: 100))
+                  fixedSize:
+                      MaterialStateProperty.all<Size>(const Size(365, 45)),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8))),
+                ),
+                onPressed: _checkData,
+                child: const Text(
+                  'Войти',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
               const SizedBox(
                 height: 190,
               ),
