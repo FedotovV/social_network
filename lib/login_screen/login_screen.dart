@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:vk_app/login_screen/start_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -22,9 +23,29 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _checkData() {
-    print('Login: ${_loginController.text}');
-    print('Password: ${_passwordController.text}');
+    if (_LoginKey.currentState!.validate()) {
+      print('Login: ${_loginController.text}');
+      print('Password: ${_passwordController.text}');
+    }
   }
+
+  String? validatorLogin(value) {
+    if (value.isEmpty) {
+      return 'Поле пустое, введите email-адрес или номер телефона';
+    } else {
+      return null;
+    }
+  }
+
+  String? validatorPassword(value) {
+    if (value.isEmpty) {
+      return 'Поле не может быть пустым, введите пароль';
+    } else {
+      return null;
+    }
+  }
+
+  final _LoginKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
       home: Scaffold(
         backgroundColor: Colors.white,
         body: Form(
+          key: _LoginKey,
           child: SafeArea(
             minimum: const EdgeInsets.all(28.0),
             child: Column(children: [
@@ -46,6 +68,8 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               TextFormField(
                 controller: _loginController,
+                validator: validatorLogin,
+                inputFormatters: [LengthLimitingTextInputFormatter(30)],
                 decoration: const InputDecoration(
                   hintText: 'Email или телефон',
                   enabledBorder: OutlineInputBorder(
@@ -67,6 +91,8 @@ class _LoginScreenState extends State<LoginScreen> {
               // ),
               TextFormField(
                 controller: _passwordController,
+                validator: validatorPassword,
+                inputFormatters: [LengthLimitingTextInputFormatter(30)],
                 decoration: InputDecoration(
                   hintText: 'Пароль',
                   enabledBorder: const OutlineInputBorder(
@@ -116,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(
-                height: 190,
+                height: 180,
               ),
               loginFacebookButton,
               const SizedBox(
