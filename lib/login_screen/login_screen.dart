@@ -1,8 +1,9 @@
-// ignore_for_file: avoid_print
+import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:vk_app/login_screen/start_screen.dart';
+import 'package:vk_app/main_screen/user_home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -22,13 +23,6 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  void _checkData() {
-    if (_LoginKey.currentState!.validate()) {
-      print('Login: ${_loginController.text}');
-      print('Password: ${_passwordController.text}');
-    }
-  }
-
   String? validatorLogin(value) {
     if (value.isEmpty) {
       return 'Поле пустое, введите email-адрес или номер телефона';
@@ -45,7 +39,15 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  final _LoginKey = GlobalKey<FormState>();
+  String? wrongPassword(value) {
+    if (value != 'admin') {
+      return 'Неправильный пароль';
+    } else {
+      return null;
+    }
+  }
+
+  final _loginKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
       home: Scaffold(
         backgroundColor: Colors.white,
         body: Form(
-          key: _LoginKey,
+          key: _loginKey,
           child: SafeArea(
             minimum: const EdgeInsets.all(28.0),
             child: Column(children: [
@@ -132,7 +134,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8))),
                 ),
-                onPressed: _checkData,
+                onPressed: () {
+                  if (_loginKey.currentState!.validate() &&
+                      _loginController.text == 'admin' &&
+                      _passwordController.text == 'admin') {
+                    Navigator.pushNamed(context, '/user_home_screen');
+                  } else if (_passwordController.text != 'admin') {
+                    wrongPassword;
+                  }
+                },
                 child: const Text(
                   'Войти',
                   style: TextStyle(

@@ -108,7 +108,29 @@ class _StartScreenState extends State<StartScreen> {
                 const SizedBox(
                   height: 25,
                 ),
-                // loginButton,
+                OutlinedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.blueAccent),
+                    // padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                    //     const EdgeInsets.symmetric(horizontal: 100))
+                    fixedSize:
+                        MaterialStateProperty.all<Size>(const Size(365, 45)),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8))),
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/login_screen');
+                  },
+                  child: const Text(
+                    'Войти',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.w400),
+                  ),
+                ),
               ],
             ),
           ),
