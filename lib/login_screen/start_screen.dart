@@ -38,7 +38,9 @@ class _StartScreenState extends State<StartScreen> {
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8)))),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/registration_screen');
+                    },
                     child: const Text(
                       'Зарегистрироваться',
                       style: TextStyle(

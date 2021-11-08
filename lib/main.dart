@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         '/user_home_screen': (context) => const UserHomeScreen(),
         // '/news_screen': (context) => const NewsScreen(),
       },
-      initialRoute: '/start_screen',
+      initialRoute: '/login_screen',
     );
   }
 }

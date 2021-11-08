@@ -48,6 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   final _loginKey = GlobalKey<FormState>();
+  bool _hidePassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -94,6 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
               TextFormField(
                 controller: _passwordController,
                 validator: validatorPassword,
+                obscureText: _hidePassword,
                 inputFormatters: [LengthLimitingTextInputFormatter(30)],
                 decoration: InputDecoration(
                   hintText: 'Пароль',
@@ -108,8 +110,26 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: Colors.grey,
                     splashColor: Colors.white,
                     focusColor: Colors.grey,
-                    onPressed: () {},
-                    icon: const Icon(Icons.help_outline_rounded),
+                    onPressed: () {
+                      setState(() {
+                        _hidePassword = !_hidePassword;
+                      });
+                    },
+                    alignment: Alignment.centerLeft,
+                    padding: const EdgeInsets.only(right: 45),
+                    icon: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      verticalDirection: VerticalDirection.up,
+                      children: [
+                        const Icon(Icons.help_outline_rounded),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Icon(_hidePassword
+                            ? Icons.visibility
+                            : Icons.visibility_off)
+                      ],
+                    ),
                     iconSize: 28.0,
                   ),
                   focusedBorder: const OutlineInputBorder(
