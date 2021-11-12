@@ -1,7 +1,6 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:vk_app/items/logos.dart';
 import 'package:vk_app/login_screen/start_screen.dart';
 import 'package:vk_app/main_screen/user_home_screen.dart';
 
@@ -40,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   String? wrongPassword(value) {
-    if (value != 'admin') {
+    if (value != '1') {
       return 'Неправильный пароль';
     } else {
       return null;
@@ -61,11 +60,11 @@ class _LoginScreenState extends State<LoginScreen> {
           child: SafeArea(
             minimum: const EdgeInsets.all(28.0),
             child: Column(children: [
-              imageVkID,
+              Logos.imageVkID,
               const SizedBox(
                 height: 100,
               ),
-              logoVK,
+              Logos.logoVK,
               const SizedBox(
                 height: 100,
               ),
@@ -107,31 +106,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   fillColor: const Color(0xFFF7F7F7),
                   filled: true,
                   suffixIcon: IconButton(
-                    color: Colors.grey,
-                    splashColor: Colors.white,
-                    focusColor: Colors.grey,
-                    onPressed: () {
-                      setState(() {
-                        _hidePassword = !_hidePassword;
-                      });
-                    },
-                    alignment: Alignment.centerLeft,
-                    padding: const EdgeInsets.only(right: 45),
-                    icon: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      verticalDirection: VerticalDirection.up,
-                      children: [
-                        const Icon(Icons.help_outline_rounded),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Icon(_hidePassword
-                            ? Icons.visibility
-                            : Icons.visibility_off)
-                      ],
-                    ),
-                    iconSize: 28.0,
-                  ),
+                      color: Colors.grey,
+                      splashColor: Colors.white,
+                      focusColor: Colors.grey,
+                      onPressed: () {
+                        setState(() {
+                          _hidePassword = !_hidePassword;
+                        });
+                      },
+                      alignment: Alignment.centerLeft,
+                      icon: Icon(_hidePassword
+                          ? Icons.visibility
+                          : Icons.visibility_off)),
                   focusedBorder: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.elliptical(10, 10),
@@ -156,10 +142,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 onPressed: () {
                   if (_loginKey.currentState!.validate() &&
-                      _loginController.text == 'admin' &&
-                      _passwordController.text == 'admin') {
+                      _loginController.text == '1' &&
+                      _passwordController.text == '1') {
                     Navigator.pushNamed(context, '/user_home_screen');
-                  } else if (_passwordController.text != 'admin') {
+                  } else if (_passwordController.text != '1') {
                     wrongPassword;
                   }
                 },
@@ -243,10 +229,4 @@ OutlinedButton loginAppleButton = OutlinedButton(
       fixedSize: MaterialStateProperty.all<Size>(const Size(365, 45)),
       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)))),
-);
-
-Image imageVkID = Image.asset(
-  'assets/images/vkID.png',
-  alignment: Alignment.center,
-  height: 24,
 );

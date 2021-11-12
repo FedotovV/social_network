@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:vk_app/login_screen/login_screen.dart';
-import 'package:vk_app/login_screen/start_screen.dart';
+import 'package:vk_app/items/logos.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -33,7 +32,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             minimum: const EdgeInsets.all(28.0),
             child: Column(
               children: [
-                imageVkID,
+                Logos.imageVkID,
                 const SizedBox(
                   height: 30,
                 ),

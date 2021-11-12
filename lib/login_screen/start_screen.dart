@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vk_app/items/logos.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class _StartScreenState extends State<StartScreen> {
                 const SizedBox(
                   height: 175,
                 ),
-                logoVK,
+                Logos.logoVK,
                 const SizedBox(
                   height: 175,
                 ),
@@ -141,13 +142,6 @@ class _StartScreenState extends State<StartScreen> {
     );
   }
 }
-
-Image logoVK = Image.asset(
-  'assets/images/vkLogo.png',
-  width: 100,
-  height: 100,
-  alignment: Alignment.center,
-);
 
 // OutlinedButton loginButton = OutlinedButton(
 //   style: ButtonStyle(

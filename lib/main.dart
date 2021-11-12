@@ -21,9 +21,9 @@ class MyApp extends StatelessWidget {
         '/registration_screen': (context) => const RegistrationScreen(),
         '/login_screen': (context) => const LoginScreen(),
         '/user_home_screen': (context) => const UserHomeScreen(),
-        // '/news_screen': (context) => const NewsScreen(),
+        '/user_home': (context) => const UserHomeScreen(),
       },
-      initialRoute: '/login_screen',
+      initialRoute: '/user_home',
     );
   }
 }
