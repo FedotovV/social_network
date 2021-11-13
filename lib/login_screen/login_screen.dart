@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:vk_app/items/logos.dart';
-import 'package:vk_app/login_screen/start_screen.dart';
-import 'package:vk_app/main_screen/user_home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -72,15 +70,24 @@ class _LoginScreenState extends State<LoginScreen> {
                 controller: _loginController,
                 validator: validatorLogin,
                 inputFormatters: [LengthLimitingTextInputFormatter(30)],
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   hintText: 'Email или телефон',
-                  enabledBorder: OutlineInputBorder(
+                  enabledBorder: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.elliptical(10, 10),
                       ),
                       borderSide: BorderSide(color: Colors.white)),
-                  fillColor: Color(0xFFF7F7F7),
-                  focusedBorder: OutlineInputBorder(
+                  fillColor: const Color(0xFFF7F7F7),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      _loginController.clear();
+                    },
+                    icon: const Icon(Icons.cancel),
+                    color: Colors.grey,
+                    splashColor: Colors.white,
+                    focusColor: Colors.grey,
+                  ),
+                  focusedBorder: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.elliptical(10, 10),
                       ),
