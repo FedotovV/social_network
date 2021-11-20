@@ -14,6 +14,14 @@ class _LoginScreenState extends State<LoginScreen> {
   final _passwordController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    _loginController.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
   void dispose() {
     _loginController.dispose();
     _passwordController.dispose();
@@ -53,126 +61,136 @@ class _LoginScreenState extends State<LoginScreen> {
       theme: ThemeData.light(),
       home: Scaffold(
         backgroundColor: Colors.white,
-        body: Form(
-          key: _loginKey,
-          child: SafeArea(
-            minimum: const EdgeInsets.all(28.0),
-            child: Column(children: [
-              Logos.imageVkID,
-              const SizedBox(
-                height: 100,
-              ),
-              Logos.logoVK,
-              const SizedBox(
-                height: 100,
-              ),
-              TextFormField(
-                controller: _loginController,
-                validator: validatorLogin,
-                inputFormatters: [LengthLimitingTextInputFormatter(30)],
-                decoration: InputDecoration(
-                  hintText: 'Email или телефон',
-                  enabledBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.elliptical(10, 10),
-                      ),
-                      borderSide: BorderSide(color: Colors.white)),
-                  fillColor: const Color(0xFFF7F7F7),
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      _loginController.clear();
-                    },
-                    icon: const Icon(Icons.cancel),
-                    color: Colors.grey,
-                    splashColor: Colors.white,
-                    focusColor: Colors.grey,
+        body: SingleChildScrollView(
+          child: Form(
+            key: _loginKey,
+            child: SafeArea(
+              minimum: const EdgeInsets.all(28.0),
+              child: Column(children: [
+                Logos.imageVkID,
+                const SizedBox(
+                  height: 100,
+                ),
+                Logos.logoVK,
+                const SizedBox(
+                  height: 100,
+                ),
+                TextFormField(
+                  controller: _loginController,
+                  keyboardType: TextInputType.emailAddress,
+                  keyboardAppearance: Brightness.light,
+                  validator: validatorLogin,
+                  inputFormatters: [LengthLimitingTextInputFormatter(30)],
+                  decoration: InputDecoration(
+                    hintText: 'Email или телефон',
+                    enabledBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.elliptical(10, 10),
+                        ),
+                        borderSide: BorderSide(color: Colors.white)),
+                    fillColor: const Color(0xFFF7F7F7),
+                    suffixIcon: _loginController.text.isNotEmpty
+                        ? IconButton(
+                            onPressed: () {
+                              setState(() {
+                                _loginController.clear();
+                              });
+                            },
+                            icon: const Icon(Icons.cancel),
+                            color: Colors.grey,
+                            splashColor: Colors.white,
+                            focusColor: Colors.grey,
+                          )
+                        : null,
+                    focusedBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.elliptical(10, 10),
+                        ),
+                        borderSide: BorderSide(color: Colors.white)),
+                    filled: true,
                   ),
-                  focusedBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.elliptical(10, 10),
-                      ),
-                      borderSide: BorderSide(color: Colors.white)),
-                  filled: true,
                 ),
-              ),
-              // const Divider(
-              //   color: Colors.grey,
-              // ),
-              TextFormField(
-                controller: _passwordController,
-                validator: validatorPassword,
-                obscureText: _hidePassword,
-                inputFormatters: [LengthLimitingTextInputFormatter(30)],
-                decoration: InputDecoration(
-                  hintText: 'Пароль',
-                  enabledBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.elliptical(10, 10),
-                      ),
-                      borderSide: BorderSide(color: Colors.white)),
-                  fillColor: const Color(0xFFF7F7F7),
-                  filled: true,
-                  suffixIcon: IconButton(
-                      color: Colors.grey,
-                      splashColor: Colors.white,
-                      focusColor: Colors.grey,
-                      onPressed: () {
-                        setState(() {
-                          _hidePassword = !_hidePassword;
-                        });
-                      },
-                      alignment: Alignment.centerLeft,
-                      icon: Icon(_hidePassword
-                          ? Icons.visibility
-                          : Icons.visibility_off)),
-                  focusedBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.elliptical(10, 10),
-                      ),
-                      borderSide: BorderSide(color: Colors.white)),
+                // const Divider(
+                //   color: Colors.grey,
+                // ),
+                TextFormField(
+                  controller: _passwordController,
+                  validator: validatorPassword,
+                  obscureText: _hidePassword,
+                  keyboardType: TextInputType.text,
+                  keyboardAppearance: Brightness.light,
+                  inputFormatters: [LengthLimitingTextInputFormatter(30)],
+                  decoration: InputDecoration(
+                    hintText: 'Пароль',
+                    enabledBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.elliptical(10, 10),
+                        ),
+                        borderSide: BorderSide(color: Colors.white)),
+                    fillColor: const Color(0xFFF7F7F7),
+                    filled: true,
+                    suffixIcon: IconButton(
+                        color: Colors.grey,
+                        splashColor: Colors.white,
+                        focusColor: Colors.grey,
+                        onPressed: () {
+                          setState(() {
+                            _hidePassword = !_hidePassword;
+                          });
+                        },
+                        alignment: Alignment.centerLeft,
+                        icon: Icon(_hidePassword
+                            ? Icons.visibility
+                            : Icons.visibility_off)),
+                    focusedBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.elliptical(10, 10),
+                        ),
+                        borderSide: BorderSide(color: Colors.white)),
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              OutlinedButton(
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.blueAccent),
-                  // padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                  //     const EdgeInsets.symmetric(horizontal: 100))
-                  fixedSize:
-                      MaterialStateProperty.all<Size>(const Size(365, 45)),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8))),
+                const SizedBox(
+                  height: 15,
                 ),
-                onPressed: () {
-                  if (_loginKey.currentState!.validate() &&
-                      _loginController.text == '1' &&
-                      _passwordController.text == '1') {
-                    Navigator.pushNamed(context, '/user_home_screen');
-                  } else if (_passwordController.text != '1') {
-                    wrongPassword;
-                  }
-                },
-                child: const Text(
-                  'Войти',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.w400),
+                OutlinedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.blueAccent),
+                    // padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                    //     const EdgeInsets.symmetric(horizontal: 100))
+                    fixedSize:
+                        MaterialStateProperty.all<Size>(const Size(365, 45)),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8))),
+                  ),
+                  onPressed: () {
+                    if (_loginKey.currentState!.validate() &&
+                        _loginController.text == '1' &&
+                        _passwordController.text == '1') {
+                      Navigator.pushNamed(context, '/user_home_screen');
+                    } else if (_passwordController.text != '1') {
+                      wrongPassword;
+                    }
+                  },
+                  child: const Text(
+                    'Войти',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.w400),
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 180,
-              ),
-              loginFacebookButton,
-              const SizedBox(
-                height: 10,
-              ),
-              loginAppleButton,
-            ]),
+                const SizedBox(
+                  height: 180,
+                ),
+                loginFacebookButton,
+                const SizedBox(
+                  height: 10,
+                ),
+                loginAppleButton,
+              ]),
+            ),
           ),
         ),
       ),

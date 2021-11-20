@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icons.dart';
 
 class UserHomeScreen extends StatefulWidget {
   const UserHomeScreen({Key? key}) : super(key: key);
@@ -29,6 +30,12 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
     ),
     Center(
       child: Text(
+        'Мои сообщества',
+        style: TextStyle(fontSize: 40),
+      ),
+    ),
+    Center(
+      child: Text(
         'Моя музыка',
         style: TextStyle(fontSize: 40),
       ),
@@ -45,41 +52,62 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: _widgetOptions[_currentTab],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentTab,
-        // type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.grey,
-        unselectedItemColor: Colors.grey,
-        iconSize: 28,
-        selectedFontSize: 16,
-        unselectedFontSize: 16,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Мой профиль',
-            backgroundColor: Colors.white,
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
+          child: _widgetOptions[_currentTab],
+        ),
+        bottomNavigationBar: Container(
+          height: 100.0,
+          color: Colors.white,
+          padding: const EdgeInsets.only(top: 20.0),
+          child: Theme(
+            data: ThemeData.light(),
+            child: BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              currentIndex: _currentTab,
+              items: const [
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    LineIcons.userCircle,
+                    size: 30,
+                  ),
+                  label: '',
+                  backgroundColor: Colors.grey,
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    LineIcons.userFriends,
+                    size: 30,
+                  ),
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    LineIcons.sms,
+                    size: 30,
+                  ),
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    LineIcons.handshake,
+                    size: 30,
+                  ),
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    LineIcons.music,
+                    size: 30,
+                  ),
+                  label: '',
+                ),
+              ],
+              onTap: currentIndexScreen,
+            ),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.group),
-            label: 'Друзья',
-            backgroundColor: Colors.white,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.message),
-            label: 'Сообщения',
-            backgroundColor: Colors.white,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.music_note),
-            label: 'Музыка',
-            backgroundColor: Colors.white,
-          ),
-        ],
-        onTap: currentIndexScreen,
+        ),
       ),
     );
   }
