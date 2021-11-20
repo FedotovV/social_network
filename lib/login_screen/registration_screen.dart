@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:vk_app/items/logos.dart';
+import 'package:vk_app/items/phone_number_pattern.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -11,8 +12,6 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-  String _phoneText = '';
-
   final _phoneNumber = TextEditingController();
   final _phoneFocus = FocusNode();
   final _phoneExp = RegExp(r'^\(\d\d\d\)-\d\d\d-\d\d-\d\d$');
@@ -21,9 +20,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   void initState() {
     super.initState();
     _phoneNumber.addListener(() {
-      setState(() {
-        _phoneText = _phoneNumber.text;
-      });
+      setState(() {});
     });
   }
 
@@ -77,10 +74,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     controller: _phoneNumber,
                     keyboardType: TextInputType.number,
                     keyboardAppearance: Brightness.light,
-                    inputFormatters: <TextInputFormatter>[
+                    inputFormatters: [
                       // FilteringTextInputFormatter.allow(_phoneExp),
-                      LengthLimitingTextInputFormatter(10),
+                      LengthLimitingTextInputFormatter(12),
                       FilteringTextInputFormatter.digitsOnly,
+                      // PhoneNumberFormatter(),
                     ],
                     decoration: InputDecoration(
                       prefixText: '  +7  |  ',
