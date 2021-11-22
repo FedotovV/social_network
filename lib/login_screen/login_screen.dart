@@ -223,6 +223,8 @@ OutlinedButton loginFacebookButton = OutlinedButton(
   style: ButtonStyle(
       backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
       fixedSize: MaterialStateProperty.all<Size>(const Size(365, 45)),
+      shadowColor: MaterialStateProperty.all<Color>(Colors.white),
+      splashFactory: NoSplash.splashFactory,
       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)))),
 );
@@ -252,6 +254,8 @@ OutlinedButton loginAppleButton = OutlinedButton(
   style: ButtonStyle(
       backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
       fixedSize: MaterialStateProperty.all<Size>(const Size(365, 45)),
+      splashFactory: NoSplash.splashFactory,
+      shadowColor: MaterialStateProperty.all<Color>(Colors.white),
       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)))),
 );

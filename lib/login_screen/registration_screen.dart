@@ -1,8 +1,12 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:vk_app/items/logos.dart';
 import 'package:vk_app/items/phone_number_pattern.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/link.dart';
+import 'package:vk_app/items/colors.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -14,7 +18,22 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   final _phoneNumber = TextEditingController();
   final _phoneFocus = FocusNode();
+  Future<void>? _launched;
+  Future<void> _launchInBrowser(String url) async {
+    if (!await launch(
+      url,
+      forceSafariVC: false,
+      forceWebView: false,
+      headers: <String, String>{'my_header_key': 'my_header_value'},
+    )) {
+      throw 'Could not launch $url';
+    }
+  }
+
   final _phoneExp = RegExp(r'^\(\d\d\d\)-\d\d\d-\d\d-\d\d$');
+  static const String urlTermsOfUse = 'https://www.instagram.com/skljkeee52/';
+  static const String urlCustomPosition =
+      'https://github.com/FedotovV/social_network';
 
   @override
   void initState() {
@@ -86,11 +105,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         fontSize: 18,
                         color: Colors.grey,
                       ),
-                      // label: const Text(''),
-                      // labelStyle: const TextStyle(
-                      //   fontSize: 19,
-                      //   color: Colors.grey,
-                      // ),
                       suffixIcon: _phoneNumber.text.isNotEmpty
                           ? IconButton(
                               onPressed: () {
@@ -143,16 +157,54 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     ),
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
-                  const Text(
-                    'Нажимая "Далее", вы принимаете Условия использования и Политику конфидециальности сервиса',
+                  RichText(
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 15,
+                    text: TextSpan(
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 15,
+                      ),
+                      children: [
+                        const TextSpan(
+                          text: 'Нажимая «‎Далее»‎, вы принимаете ',
+                        ),
+                        TextSpan(
+                            text: 'Условия использования',
+                            style: const TextStyle(
+                              decoration: TextDecoration.underline,
+                            ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () async {
+                                if (await canLaunch(urlTermsOfUse)) {
+                                  await launch(urlTermsOfUse);
+                                } else {
+                                  throw 'Страница отсутствует $urlTermsOfUse';
+                                }
+                              }),
+                        const TextSpan(
+                          text: ' и ',
+                        ),
+                        TextSpan(
+                            text: 'Политика конфиденциальности',
+                            style: const TextStyle(
+                              decoration: TextDecoration.underline,
+                            ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () async {
+                                if (await canLaunch(urlCustomPosition)) {
+                                  await launch(urlCustomPosition);
+                                } else {
+                                  throw 'Страница отсутствует $urlCustomPosition';
+                                }
+                              }),
+                        const TextSpan(
+                          text: ' сервиса',
+                        ),
+                      ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
