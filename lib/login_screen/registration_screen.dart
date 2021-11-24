@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:vk_app/items/logos.dart';
-import 'package:vk_app/items/phone_number_pattern.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/link.dart';
-import 'package:vk_app/items/colors.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -18,19 +16,7 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   final _phoneNumber = TextEditingController();
   final _phoneFocus = FocusNode();
-  Future<void>? _launched;
-  Future<void> _launchInBrowser(String url) async {
-    if (!await launch(
-      url,
-      forceSafariVC: false,
-      forceWebView: false,
-      headers: <String, String>{'my_header_key': 'my_header_value'},
-    )) {
-      throw 'Could not launch $url';
-    }
-  }
 
-  final _phoneExp = RegExp(r'^\(\d\d\d\)-\d\d\d-\d\d-\d\d$');
   static const String urlTermsOfUse = 'https://www.instagram.com/skljkeee52/';
   static const String urlCustomPosition =
       'https://github.com/FedotovV/social_network';
@@ -41,6 +27,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     _phoneNumber.addListener(() {
       setState(() {});
     });
+
+    PhoneInputFormatter.replacePhoneMask(
+        countryCode: 'RU', newMask: '+0 (000)-000 00 00');
   }
 
   @override
@@ -89,18 +78,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     height: 30,
                   ),
                   TextFormField(
+                    style: const TextStyle(fontSize: 18.0),
                     autofocus: true,
                     controller: _phoneNumber,
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.phone,
                     keyboardAppearance: Brightness.light,
                     inputFormatters: [
-                      // FilteringTextInputFormatter.allow(_phoneExp),
-                      LengthLimitingTextInputFormatter(12),
-                      FilteringTextInputFormatter.digitsOnly,
-                      // PhoneNumberFormatter(),
+                      PhoneInputFormatter(),
                     ],
                     decoration: InputDecoration(
-                      prefixText: '  +7  |  ',
+                      prefixText: '  ',
+                      prefixIcon: const Icon(
+                        Icons.phone,
+                        color: Colors.grey,
+                      ),
                       prefixStyle: const TextStyle(
                         fontSize: 18,
                         color: Colors.grey,
