@@ -39,12 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String? validatorPassword(value) {
     if (value.isEmpty) {
       return 'Поле не может быть пустым, введите пароль';
-    } else {
-      return null;
     }
-  }
-
-  String? wrongPassword(value) {
     if (value != '1') {
       return 'Неправильный пароль';
     } else {
@@ -169,9 +164,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         _loginController.text == '1' &&
                         _passwordController.text == '1') {
                       Navigator.pushNamed(context, '/user_home_screen');
-                    } else if (_passwordController.text != '1') {
-                      wrongPassword;
-                    }
+                    } else if (_passwordController.text != '1') {}
                   },
                   child: const Text(
                     'Войти',
