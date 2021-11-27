@@ -16,6 +16,8 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   final _phoneNumber = TextEditingController();
   final _phoneFocus = FocusNode();
+  bool? _isButtonDisabled = false;
+  int? _counter;
 
   static const String urlTermsOfUse = 'https://www.instagram.com/skljkeee52/';
   static const String urlCustomPosition =
@@ -137,7 +139,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               borderRadius: BorderRadius.circular(8))),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/');
+                      setState(() {
+                        _isButtonDisabled = true;
+                      });
+                      Navigator.pushNamed(context, '/start_screen');
                     },
                     child: const Text(
                       'Далее',
