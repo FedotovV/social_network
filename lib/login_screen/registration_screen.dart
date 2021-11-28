@@ -16,18 +16,21 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   final _phoneNumber = TextEditingController();
   final _phoneFocus = FocusNode();
-  bool? _isButtonDisabled = false;
-  int? _counter;
 
   static const String urlTermsOfUse = 'https://www.instagram.com/skljkeee52/';
   static const String urlCustomPosition =
       'https://github.com/FedotovV/social_network';
 
+  bool _isButtonActive = true;
+
   @override
   void initState() {
     super.initState();
     _phoneNumber.addListener(() {
-      setState(() {});
+      final _isButtonActive = _phoneNumber.text.isNotEmpty;
+      setState(() {
+        this._isButtonActive = _isButtonActive;
+      });
     });
 
     PhoneInputFormatter.replacePhoneMask(
@@ -139,9 +142,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               borderRadius: BorderRadius.circular(8))),
                     ),
                     onPressed: () {
-                      setState(() {
-                        _isButtonDisabled = true;
-                      });
+                      if (_isButtonActive) {
+                        setState(() {
+                          _isButtonActive = true;
+                        });
+                      } else {
+                        return null;
+                      }
                       Navigator.pushNamed(context, '/start_screen');
                     },
                     child: const Text(
