@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vk_app/login_screen/start_screen.dart';
 import 'login_screen/login_screen.dart';
-import 'login_screen/registration_screen.dart';
+import 'login_screen/registration_screen/registration_screen.dart';
 import 'main_screen/user_home_screen.dart';
 
 void main() {
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         '/user_home_screen': (context) => const UserHomeScreen(),
         '/user_home': (context) => const UserHomeScreen(),
       },
-      initialRoute: '/start_screen',
+      initialRoute: '/user_home',
     );
   }
 }

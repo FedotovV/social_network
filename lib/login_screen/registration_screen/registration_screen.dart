@@ -5,6 +5,8 @@ import 'package:flutter/widgets.dart';
 import 'package:vk_app/items/logos.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
+import 'package:vk_app/login_screen/registration_screen/text_enter_number.dart';
+import 'package:vk_app/login_screen/registration_screen/text_numer_phone.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -60,25 +62,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   const SizedBox(
                     height: 30,
                   ),
-                  const Text(
-                    'Введите номер',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 28,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
+                  EnterNumber.enterNumber,
                   const SizedBox(
                     height: 15,
                   ),
-                  const Text(
-                    'Ваш номер телефона будет использоваться для входа в аккаунт',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 15,
-                    ),
-                  ),
+                  NumberPhone.numberPhone,
                   const SizedBox(
                     height: 30,
                   ),

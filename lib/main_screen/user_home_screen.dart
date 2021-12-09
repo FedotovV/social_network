@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 
+import 'navigation_drawer.dart';
+
 class UserHomeScreen extends StatefulWidget {
   const UserHomeScreen({Key? key}) : super(key: key);
 
@@ -9,32 +11,39 @@ class UserHomeScreen extends StatefulWidget {
 }
 
 class _UserHomeScreenState extends State<UserHomeScreen> {
-  static const List<Widget> _widgetOptions = <Widget>[
-    Center(
-      child: Text(
-        'Моя страница',
-        style: TextStyle(fontSize: 40),
+  // ignore: prefer_final_fields
+  static List<Widget> _widgetOptions = <Widget>[
+    Scaffold(
+      drawer: const NavigationDrawer(),
+      appBar: AppBar(
+        title: const Text('Профиль'),
+        centerTitle: true,
+        // leading: IconButton(
+        //   icon: const Icon(Icons.menu),
+        //   onPressed: () {},
+        //   alignment: Alignment.center,
+        // ),
       ),
     ),
-    Center(
+    const Center(
       child: Text(
         'Мои друзья',
         style: TextStyle(fontSize: 40),
       ),
     ),
-    Center(
+    const Center(
       child: Text(
         'Мои сообщения',
         style: TextStyle(fontSize: 40),
       ),
     ),
-    Center(
+    const Center(
       child: Text(
         'Мои сообщества',
         style: TextStyle(fontSize: 40),
       ),
     ),
-    Center(
+    const Center(
       child: Text(
         'Моя музыка',
         style: TextStyle(fontSize: 40),
