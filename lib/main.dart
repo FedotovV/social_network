@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vk_app/login_screen/start_screen.dart';
 import 'login_screen/login_screen.dart';
 import 'login_screen/registration_screen/registration_screen.dart';
+import 'login_screen/user_editing_screen/user_editing.dart';
 import 'main_screen/user_home_screen.dart';
 
 void main() {
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         '/login_screen': (context) => const LoginScreen(),
         '/user_home_screen': (context) => const UserHomeScreen(),
         '/user_home': (context) => const UserHomeScreen(),
+        '/user_editing': (context) => const UserEditing(),
       },
       initialRoute: '/user_home',
     );

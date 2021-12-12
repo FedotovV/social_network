@@ -40,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (value.isEmpty) {
       return 'Поле не может быть пустым, введите пароль';
     }
-    if (value != '1') {
+    if (value != 'q') {
       return 'Неправильный пароль';
     } else {
       return null;
@@ -161,10 +161,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   onPressed: () {
                     if (_loginKey.currentState!.validate() &&
-                        _loginController.text == '1' &&
-                        _passwordController.text == '1') {
+                        _loginController.text == 'q' &&
+                        _passwordController.text == 'q') {
                       Navigator.pushNamed(context, '/user_home_screen');
-                    } else if (_passwordController.text != '1') {}
+                    } else if (_passwordController.text != 'q') {}
                   },
                   child: const Text(
                     'Войти',
