@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:vk_app/main_screen/my_profile/avatar_name_info.dart';
 
 import 'navigation_drawer.dart';
 
@@ -14,17 +15,22 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
   // ignore: prefer_final_fields
   static List<Widget> _widgetOptions = <Widget>[
     Scaffold(
-      drawer: const NavigationDrawer(),
-      appBar: AppBar(
-        title: const Text('Профиль'),
-        centerTitle: true,
-        // leading: IconButton(
-        //   icon: const Icon(Icons.menu),
-        //   onPressed: () {},
-        //   alignment: Alignment.center,
-        // ),
-      ),
-    ),
+        drawer: const NavigationDrawer(),
+        appBar: AppBar(
+          title: const Text('Профиль'),
+          centerTitle: true,
+          // leading: IconButton(
+          //   icon: const Icon(Icons.menu),
+          //   onPressed: () {},
+          //   alignment: Alignment.center,
+          // ),
+        ),
+        body: Container(
+            child: Column(
+          children: [
+            AvatarNameInfo(),
+          ],
+        ))),
     const Center(
       child: Text(
         'Мои друзья',
