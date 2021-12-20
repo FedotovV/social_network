@@ -46,14 +46,14 @@ class AvatarNameInfo extends StatelessWidget {
                 children: const [
                   Text(
                     'online',
-                    style: TextStyle(color: Colors.grey, fontSize: 15),
+                    style: TextStyle(color: Colors.grey, fontSize: 16),
                   ),
                   SizedBox(
                     width: 5,
                   ),
                   Icon(
                     Icons.phone_android,
-                    size: 10,
+                    size: 12,
                   ),
                 ],
               )

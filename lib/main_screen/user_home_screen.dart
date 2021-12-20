@@ -94,7 +94,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
               items: const [
                 BottomNavigationBarItem(
                   icon: Icon(
-                    LineIcons.userCircle,
+                    LineIcons.home,
                     size: 30,
                   ),
                   label: '',
