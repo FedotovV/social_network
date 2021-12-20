@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:vk_app/main_screen/my_profile/avatar_name_info.dart';
 
+import 'my_profile/edit_button.dart';
+import 'my_profile/service_bar.dart';
 import 'navigation_drawer.dart';
 
 class UserHomeScreen extends StatefulWidget {
@@ -27,8 +29,16 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
         ),
         body: Container(
             child: Column(
-          children: [
+          children: const [
             AvatarNameInfo(),
+            SizedBox(
+              height: 5,
+            ),
+            EditButtonWidget(),
+            SizedBox(
+              height: 15,
+            ),
+            ServiceBarWidget(),
           ],
         ))),
     const Center(
