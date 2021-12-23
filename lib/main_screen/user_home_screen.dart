@@ -27,20 +27,22 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
           //   alignment: Alignment.center,
           // ),
         ),
-        body: Container(
-            child: Column(
-          children: const [
-            AvatarNameInfo(),
-            SizedBox(
-              height: 5,
-            ),
-            EditButtonWidget(),
-            SizedBox(
-              height: 15,
-            ),
-            ServiceBarWidget(),
-          ],
-        ))),
+        body: SingleChildScrollView(
+          child: Container(
+              child: Column(
+            children: const [
+              AvatarNameInfo(),
+              SizedBox(
+                height: 5,
+              ),
+              EditButtonWidget(),
+              SizedBox(
+                height: 15,
+              ),
+              ServiceBarWidget(),
+            ],
+          )),
+        )),
     const Center(
       child: Text(
         'Мои друзья',

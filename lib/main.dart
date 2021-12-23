@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vk_app/login_screen/registration_screen/user_registration_screen.dart';
 import 'package:vk_app/login_screen/start_screen.dart';
 import 'package:vk_app/main_screen/my_profile/avatar_name_info.dart';
 import 'package:vk_app/main_screen/my_profile/set_status.dart';
@@ -27,8 +28,10 @@ class MyApp extends StatelessWidget {
         '/user_home': (context) => const UserHomeScreen(),
         '/user_editing': (context) => const UserEditing(),
         '/set_status_profile': (context) => const SetStatusWidget(),
+        '/user_registration_screen': (context) =>
+            const UserRegistrationScreen(),
       },
-      initialRoute: '/user_home',
+      initialRoute: '/user_registration_screen',
     );
   }
 }

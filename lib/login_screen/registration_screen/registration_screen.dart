@@ -137,7 +137,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       } else {
                         return null;
                       }
-                      Navigator.pushNamed(context, '/start_screen');
+                      Navigator.pushNamed(context, '/user_registration_screen');
                     },
                     child: const Text(
                       'Далее',
