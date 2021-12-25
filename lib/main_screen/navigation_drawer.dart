@@ -13,7 +13,7 @@ class NavigationDrawer extends StatelessWidget {
 
     return Drawer(
       child: Material(
-        color: Colors.blue,
+        color: Colors.blueAccent,
         child: ListView(
           children: <Widget>[
             Container(

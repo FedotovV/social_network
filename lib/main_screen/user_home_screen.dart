@@ -19,6 +19,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
     Scaffold(
         drawer: const NavigationDrawer(),
         appBar: AppBar(
+          backgroundColor: Colors.blueAccent,
           title: const Text('Профиль'),
           centerTitle: true,
           // leading: IconButton(

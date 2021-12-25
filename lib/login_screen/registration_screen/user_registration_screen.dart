@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:pattern_formatter/pattern_formatter.dart';
 
 class UserRegistrationScreen extends StatefulWidget {
   const UserRegistrationScreen({Key? key}) : super(key: key);
@@ -11,6 +13,9 @@ class UserRegistrationScreen extends StatefulWidget {
 class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
   final _userFirstName = TextEditingController();
   final _userLastName = TextEditingController();
+
+  @override
+  String _placeholder = '--.--.----';
 
   @override
   void dispose() {
@@ -60,6 +65,7 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
         appBar: AppBar(
           title: const Text('Регистрация'),
           centerTitle: true,
+          backgroundColor: Colors.blueAccent,
         ),
         body: SingleChildScrollView(
           child: Form(
@@ -141,8 +147,54 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
                               },
                               icon: const Icon(Icons.cancel))
                           : null,
-                      prefixIcon: const Icon(LineIcons.user),
+                      prefixIcon: const Icon(LineIcons.userCheck),
                       hintText: 'Введите фамилию',
+                      border: const OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.grey,
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(
+                          8.0,
+                        )),
+                        gapPadding: 4.0,
+                      ),
+                      enabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.grey,
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(
+                          8.0,
+                        )),
+                        gapPadding: 4.0,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  TextFormField(
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      DateInputFormatter(),
+                    ],
+                    // validator: ,
+                    style: const TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    // controller: ,
+                    decoration: InputDecoration(
+                      suffixIcon: _userLastName.text.isNotEmpty
+                          ? IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  _userLastName.clear();
+                                });
+                              },
+                              icon: const Icon(Icons.cancel))
+                          : null,
+                      prefixIcon: const Icon(LineIcons.userCheck),
+                      hintText: 'Введите дату рождения',
                       border: const OutlineInputBorder(
                         borderSide: BorderSide(
                           color: Colors.grey,
