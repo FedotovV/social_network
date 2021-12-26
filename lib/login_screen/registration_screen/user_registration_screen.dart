@@ -13,14 +13,13 @@ class UserRegistrationScreen extends StatefulWidget {
 class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
   final _userFirstName = TextEditingController();
   final _userLastName = TextEditingController();
-
-  @override
-  String _placeholder = '--.--.----';
+  final _dateOfBirth = TextEditingController();
 
   @override
   void dispose() {
     _userFirstName.dispose();
     _userLastName.dispose();
+    _dateOfBirth.dispose();
     super.dispose();
   }
 
@@ -31,6 +30,9 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
       setState(() {});
     });
     _userLastName.addListener(() {
+      setState(() {});
+    });
+    _dateOfBirth.addListener(() {
       setState(() {});
     });
   }
@@ -52,6 +54,16 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
       return 'Имя не может быть меньше 3-х символов';
     } else if (value == _userFirstName) {
       return 'Фамилия не может совпадать с именем';
+    } else {
+      return null;
+    }
+  }
+
+  String? _validationDateOfBirth(value) {
+    if (value.isEmpty) {
+      return 'Заполните дату вашего рождения';
+    } else if (value <= 01 / 01 / 2016) {
+      return 'Вы не можете самостоятельно зарегистироваться, возраст менее 5 лет';
     } else {
       return null;
     }
@@ -177,12 +189,12 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
                     inputFormatters: [
                       DateInputFormatter(),
                     ],
-                    // validator: ,
+                    validator: _validationDateOfBirth,
                     style: const TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.w500,
                     ),
-                    // controller: ,
+                    controller: _dateOfBirth,
                     decoration: InputDecoration(
                       suffixIcon: _userLastName.text.isNotEmpty
                           ? IconButton(

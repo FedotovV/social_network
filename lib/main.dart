@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         '/user_registration_screen': (context) =>
             const UserRegistrationScreen(),
       },
-      initialRoute: '/user_registration_screen',
+      initialRoute: '/user_home',
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:vk_app/main_screen/my_profile/avatar_name_info.dart';
 
+import 'my_friends/my_friends_screen.dart';
 import 'my_profile/edit_button.dart';
 import 'my_profile/service_bar.dart';
 import 'navigation_drawer.dart';
@@ -44,11 +45,8 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
             ],
           )),
         )),
-    const Center(
-      child: Text(
-        'Мои друзья',
-        style: TextStyle(fontSize: 40),
-      ),
+    const Scaffold(
+      body: MyFriendsScreen(),
     ),
     const Center(
       child: Text(
