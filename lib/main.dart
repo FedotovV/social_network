@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:vk_app/login_screen/registration_screen/user_registration_screen.dart';
 import 'package:vk_app/login_screen/start_screen.dart';
+import 'package:vk_app/main_screen/friend_profile/friend_profile.dart';
 import 'package:vk_app/main_screen/my_profile/avatar_name_info.dart';
 import 'package:vk_app/main_screen/my_profile/set_status.dart';
 import 'login_screen/login_screen.dart';
 import 'login_screen/registration_screen/registration_screen.dart';
 import 'login_screen/user_editing_screen/user_editing.dart';
+import 'main_screen/my_friends/important_friends_list.dart';
 import 'main_screen/user_home_screen.dart';
 
 void main() {
@@ -30,6 +32,8 @@ class MyApp extends StatelessWidget {
         '/set_status_profile': (context) => const SetStatusWidget(),
         '/user_registration_screen': (context) =>
             const UserRegistrationScreen(),
+        '/important_friends_list': (context) => const ImportantFriendsList(),
+        '/friend_profile': (context) => const FriendProfile(),
       },
       initialRoute: '/user_home',
     );
