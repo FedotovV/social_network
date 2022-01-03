@@ -3,6 +3,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:vk_app/main_screen/my_profile/avatar_name_info.dart';
 
 import 'my_friends/important_friends_list.dart';
+import 'my_friends/information_and_search_widget.dart';
 import 'my_profile/edit_button.dart';
 import 'my_profile/service_bar.dart';
 import 'navigation_drawer.dart';
@@ -17,6 +18,7 @@ class UserHomeScreen extends StatefulWidget {
 class _UserHomeScreenState extends State<UserHomeScreen> {
   // ignore: prefer_final_fields
   static List<Widget> _widgetOptions = <Widget>[
+    // Мой профиль
     Scaffold(
         drawer: const NavigationDrawer(),
         appBar: AppBar(
@@ -45,9 +47,18 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
             ],
           )),
         )),
+    // Мои друзья
     const Scaffold(
-      body: ImportantFriendsList(),
+      body: InformationAndSearchWidget(),
+      // SingleChildScrollView(
+      //   child: Column(
+      //     mainAxisSize: MainAxisSize.min,
+      //     children: const [
+      // ImportantFriendsList(),
+      // ],
     ),
+    //   ),
+    // ),
     const Center(
       child: Text(
         'Мои сообщения',
