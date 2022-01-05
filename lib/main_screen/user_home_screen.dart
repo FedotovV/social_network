@@ -48,17 +48,40 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
           )),
         )),
     // Мои друзья
-    const Scaffold(
-      body: InformationAndSearchWidget(),
-      // SingleChildScrollView(
-      //   child: Column(
-      //     mainAxisSize: MainAxisSize.min,
-      //     children: const [
-      // ImportantFriendsList(),
-      // ],
+    Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.grey.shade50,
+        elevation: 0,
+        centerTitle: true,
+        leading: const InkWell(
+          // реализовать обработку нажатия на аватарку
+          // onTap: () {Navigator.pushNamed(context, '/user_home');},
+          child: Padding(
+            padding: EdgeInsets.only(left: 18.0),
+            child: CircleAvatar(
+              backgroundImage: AssetImage('image/photo/foto.jpg'),
+              radius: 6.0,
+            ),
+          ),
+        ),
+        title: const Text(
+          'Друзья',
+          style: TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.w600,
+            color: Colors.black,
+          ),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: const [
+            InformationAndSearchWidget(),
+          ],
+        ),
+      ),
     ),
-    //   ),
-    // ),
     const Center(
       child: Text(
         'Мои сообщения',

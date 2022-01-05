@@ -20,6 +20,8 @@ class _ImportantFriendsListState extends State<ImportantFriendsList> {
     return ListView.builder(
       itemCount: 5,
       itemExtent: 90,
+      scrollDirection: Axis.vertical,
+      shrinkWrap: true,
       itemBuilder: (BuildContext context, int index) {
         return Stack(
           children: [
