@@ -3,6 +3,15 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:line_icons/line_icons.dart';
 
+class Profile {
+  final AssetImage imageName;
+  final String userName;
+  final String city;
+
+  Profile(
+      {required this.imageName, required this.userName, required this.city});
+}
+
 class InformationAndSearchWidget extends StatefulWidget {
   const InformationAndSearchWidget({Key? key}) : super(key: key);
 
@@ -11,8 +20,60 @@ class InformationAndSearchWidget extends StatefulWidget {
       _InformationAndSearchWidgetState();
 }
 
+final _searchController = TextEditingController();
+
+final _profile = [
+  Profile(
+      imageName: const AssetImage('image/photo/foto.jpg'),
+      userName: 'Юлия Рудакова',
+      city: 'Нижний Новгород'),
+  Profile(
+      imageName: const AssetImage('image/photo/DY.jpg'),
+      userName: 'Дмитрий Юлин',
+      city: 'Нижний Новгород'),
+  Profile(
+      imageName: const AssetImage('image/photo/YN.jpg'),
+      userName: 'Юрий Никуленков',
+      city: 'Нижний Новгород'),
+  Profile(
+      imageName: const AssetImage('image/photo/SK.jpg'),
+      userName: 'Сергей Козлов',
+      city: 'Нижний Новгород'),
+  Profile(
+      imageName: const AssetImage('image/photo/AO.jpg'),
+      userName: 'Александр Осинин',
+      city: 'Нижний Новгород'),
+];
+
+var _filterProrile = <Profile>[];
+
 class _InformationAndSearchWidgetState
     extends State<InformationAndSearchWidget> {
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  void _searchProfile() {
+    if (_searchController.text.isNotEmpty) {
+      _filterProrile = _profile.where((Profile profile) {
+        return profile.userName
+            .toLowerCase()
+            .contains(_searchController.text.toLowerCase());
+      }).toList();
+    } else {
+      _filterProrile = _profile;
+    }
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    _filterProrile = _profile;
+    _searchController.addListener(_searchProfile);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -22,6 +83,7 @@ class _InformationAndSearchWidgetState
           children: [
             // Виджет поиска
             TextFormField(
+              controller: _searchController,
               cursorColor: Colors.black,
               cursorHeight: 16,
               decoration: InputDecoration(
@@ -145,21 +207,22 @@ class _InformationAndSearchWidgetState
             ),
             // Список "Важных друзей"
             ListView.builder(
-              itemCount: 5,
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              itemCount: _filterProrile.length,
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
               itemExtent: 85,
               itemBuilder: (BuildContext context, int index) {
+                final profile = _filterProrile[index];
                 return Stack(
                   children: [
                     Row(
                       children: [
                         CircleAvatar(
                           backgroundColor: Colors.blue[50],
-                          radius: 40.0,
+                          radius: 35.0,
                           // Передавать информацию через API
-                          backgroundImage:
-                              const AssetImage('image/photo/foto.jpg'),
+                          backgroundImage: profile.imageName,
                         ),
                         const SizedBox(
                           width: 15,
@@ -170,22 +233,22 @@ class _InformationAndSearchWidgetState
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
+                            children: [
                               Text(
                                 // Передавать информацию через API
-                                'Юлия Рудакова',
-                                style: TextStyle(fontSize: 20),
+                                profile.userName,
+                                style: const TextStyle(fontSize: 18),
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Text(
                                 // Передавать информацию через API
-                                'Нижний Новгород',
-                                style:
-                                    TextStyle(fontSize: 16, color: Colors.grey),
+                                profile.city,
+                                style: const TextStyle(
+                                    fontSize: 16, color: Colors.grey),
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),
@@ -242,6 +305,7 @@ class _InformationAndSearchWidgetState
             // Список друзей
             ListView.builder(
               // Передавать зависимость от количества друзей .длина
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               itemCount: 15,
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
@@ -253,7 +317,7 @@ class _InformationAndSearchWidgetState
                       children: [
                         CircleAvatar(
                           backgroundColor: Colors.blue[50],
-                          radius: 40.0,
+                          radius: 35.0,
                           // Передавать информацию через API
                           backgroundImage:
                               const AssetImage('image/photo/foto.jpg'),
@@ -271,7 +335,7 @@ class _InformationAndSearchWidgetState
                               Text(
                                 // Передавать информацию через API
                                 'Юлия Рудакова',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 18),
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),

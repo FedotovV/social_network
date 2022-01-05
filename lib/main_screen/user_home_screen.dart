@@ -76,7 +76,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: const [
+          children: [
             InformationAndSearchWidget(),
           ],
         ),
