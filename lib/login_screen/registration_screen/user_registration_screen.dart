@@ -109,7 +109,7 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
                   ),
                   Logos.logoVK,
                   const SizedBox(
-                    height: 50,
+                    height: 30,
                   ),
 
                   // Виджет с текстом "для регистрации нового профиля..."
@@ -118,11 +118,12 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
+                      color: Colors.grey,
                     ),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 45,
                   ),
                   // Поле для ввода "Введите имя"
                   TextFormField(
@@ -241,12 +242,12 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
                     ),
                     controller: _dateOfBirth,
                     decoration: InputDecoration(
-                      suffixIcon: _userLastName.text.isNotEmpty
+                      suffixIcon: _dateOfBirth.text.isNotEmpty
                           ? IconButton(
                               color: Colors.grey,
                               onPressed: () {
                                 setState(() {
-                                  _userLastName.clear();
+                                  _dateOfBirth.clear();
                                 });
                               },
                               icon: const Icon(Icons.cancel))
@@ -292,12 +293,12 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
                     ),
                     controller: _cityResidence,
                     decoration: InputDecoration(
-                      suffixIcon: _userLastName.text.isNotEmpty
+                      suffixIcon: _cityResidence.text.isNotEmpty
                           ? IconButton(
                               color: Colors.grey,
                               onPressed: () {
                                 setState(() {
-                                  _userLastName.clear();
+                                  _cityResidence.clear();
                                 });
                               },
                               icon: const Icon(Icons.cancel))
@@ -332,7 +333,24 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
                     ),
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 85,
+                  ),
+                  OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      primary: Colors.white,
+                      backgroundColor: Colors.green,
+                      fixedSize: const Size(365, 45),
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/user_home_screen');
+                    },
+                    child: const Text(
+                      'Далее',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18.0,
+                      ),
+                    ),
                   ),
                 ],
               ),

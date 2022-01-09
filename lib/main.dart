@@ -26,8 +26,8 @@ class MyApp extends StatelessWidget {
         '/start_screen': (context) => const StartScreen(),
         '/registration_screen': (context) => const RegistrationScreen(),
         '/login_screen': (context) => const LoginScreen(),
-        '/user_home_screen': (context) => UserHomeScreen(),
-        '/user_home': (context) => UserHomeScreen(),
+        '/user_home_screen': (context) => const UserHomeScreen(),
+        '/user_home': (context) => const UserHomeScreen(),
         '/user_editing': (context) => const UserEditing(),
         '/set_status_profile': (context) => const SetStatusWidget(),
         '/user_registration_screen': (context) =>
