@@ -50,9 +50,10 @@ var _filterProrile = <Profile>[];
 class _InformationAndSearchWidgetState
     extends State<InformationAndSearchWidget> {
   @override
-  void dispose() {
-    super.dispose();
-  }
+  // void dispose() {
+  //   super.dispose();
+  //   _searchController.dispose();
+  // }
 
   void _searchProfile() {
     if (_searchController.text.isNotEmpty) {

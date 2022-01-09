@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:pattern_formatter/pattern_formatter.dart';
+import 'package:vk_app/items/logos.dart';
 
 class UserRegistrationScreen extends StatefulWidget {
   const UserRegistrationScreen({Key? key}) : super(key: key);
@@ -14,12 +15,14 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
   final _userFirstName = TextEditingController();
   final _userLastName = TextEditingController();
   final _dateOfBirth = TextEditingController();
+  final _cityResidence = TextEditingController();
 
   @override
   void dispose() {
     _userFirstName.dispose();
     _userLastName.dispose();
     _dateOfBirth.dispose();
+    _cityResidence.dispose();
     super.dispose();
   }
 
@@ -33,6 +36,9 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
       setState(() {});
     });
     _dateOfBirth.addListener(() {
+      setState(() {});
+    });
+    _cityResidence.addListener(() {
       setState(() {});
     });
   }
@@ -69,6 +75,18 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
     }
   }
 
+  String? _validationCityResidence(value) {
+    if (value.isEmpty) {
+      return 'Поле не может быть пустым';
+    } else if (value < 3) {
+      return 'Имя не может быть меньше 3-х символов';
+    } else if (value == _userFirstName) {
+      return 'Фамилия не может совпадать с именем';
+    } else {
+      return null;
+    }
+  }
+
   final _userNameKey = GlobalKey<FormState>();
 
   @override
@@ -87,8 +105,14 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
               child: Column(
                 children: [
                   const SizedBox(
-                    height: 30,
+                    height: 75,
                   ),
+                  Logos.logoVK,
+                  const SizedBox(
+                    height: 50,
+                  ),
+
+                  // Виджет с текстом "для регистрации нового профиля..."
                   const Text(
                     'Для регистрации нового профиля, заполните поля указанные ниже.',
                     style: TextStyle(
@@ -100,7 +124,9 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
                   const SizedBox(
                     height: 30,
                   ),
+                  // Поле для ввода "Введите имя"
                   TextFormField(
+                    cursorColor: Colors.black,
                     validator: _validationUserFirstName,
                     style: const TextStyle(
                       fontSize: 18.0,
@@ -110,6 +136,7 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
                     decoration: InputDecoration(
                       suffixIcon: _userFirstName.text.isNotEmpty
                           ? IconButton(
+                              color: Colors.grey,
                               onPressed: () {
                                 setState(() {
                                   _userFirstName.clear();
@@ -117,31 +144,39 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
                               },
                               icon: const Icon(Icons.cancel))
                           : null,
-                      prefixIcon: const Icon(LineIcons.user),
+                      prefixIcon: const Icon(
+                        LineIcons.user,
+                        color: Colors.grey,
+                      ),
                       hintText: 'Введите имя',
-                      border: const OutlineInputBorder(
+                      focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Colors.grey,
+                          color: Colors.white,
                         ),
                         borderRadius: BorderRadius.all(Radius.circular(
-                          8.0,
+                          16.0,
                         )),
                         gapPadding: 4.0,
                       ),
                       enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Colors.grey,
+                          color: Colors.white,
                         ),
                         borderRadius: BorderRadius.all(Radius.circular(
-                          8.0,
+                          16.0,
                         )),
                         gapPadding: 4.0,
                       ),
+                      focusColor: Colors.white,
+                      fillColor: Colors.grey.shade200,
+                      filled: true,
+                      hoverColor: Colors.white,
                     ),
                   ),
                   const SizedBox(
                     height: 15,
                   ),
+                  // поле ввода "Введите фамилию"
                   TextFormField(
                     validator: _validationUserLastName,
                     style: const TextStyle(
@@ -152,6 +187,7 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
                     decoration: InputDecoration(
                       suffixIcon: _userLastName.text.isNotEmpty
                           ? IconButton(
+                              color: Colors.grey,
                               onPressed: () {
                                 setState(() {
                                   _userLastName.clear();
@@ -159,32 +195,41 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
                               },
                               icon: const Icon(Icons.cancel))
                           : null,
-                      prefixIcon: const Icon(LineIcons.userCheck),
+                      prefixIcon: const Icon(
+                        LineIcons.userCheck,
+                        color: Colors.grey,
+                      ),
                       hintText: 'Введите фамилию',
-                      border: const OutlineInputBorder(
+                      focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Colors.grey,
+                          color: Colors.white,
                         ),
                         borderRadius: BorderRadius.all(Radius.circular(
-                          8.0,
+                          16.0,
                         )),
                         gapPadding: 4.0,
                       ),
                       enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Colors.grey,
+                          color: Colors.white,
                         ),
                         borderRadius: BorderRadius.all(Radius.circular(
-                          8.0,
+                          16.0,
                         )),
                         gapPadding: 4.0,
                       ),
+                      focusColor: Colors.white,
+                      fillColor: Colors.grey.shade200,
+                      filled: true,
+                      hoverColor: Colors.white,
                     ),
                   ),
                   const SizedBox(
                     height: 15,
                   ),
+                  // поле ввода "Введите дату рождения"
                   TextFormField(
+                    cursorColor: Colors.black,
                     keyboardType: TextInputType.number,
                     inputFormatters: [
                       DateInputFormatter(),
@@ -198,6 +243,7 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
                     decoration: InputDecoration(
                       suffixIcon: _userLastName.text.isNotEmpty
                           ? IconButton(
+                              color: Colors.grey,
                               onPressed: () {
                                 setState(() {
                                   _userLastName.clear();
@@ -205,27 +251,88 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
                               },
                               icon: const Icon(Icons.cancel))
                           : null,
-                      prefixIcon: const Icon(LineIcons.userCheck),
+                      prefixIcon: const Icon(
+                        LineIcons.calendar,
+                        color: Colors.grey,
+                      ),
                       hintText: 'Введите дату рождения',
-                      border: const OutlineInputBorder(
+                      focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Colors.grey,
+                          color: Colors.white,
                         ),
                         borderRadius: BorderRadius.all(Radius.circular(
-                          8.0,
+                          16.0,
                         )),
                         gapPadding: 4.0,
                       ),
                       enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Colors.grey,
+                          color: Colors.white,
                         ),
                         borderRadius: BorderRadius.all(Radius.circular(
-                          8.0,
+                          16.0,
                         )),
                         gapPadding: 4.0,
                       ),
+                      focusColor: Colors.white,
+                      fillColor: Colors.grey.shade200,
+                      filled: true,
+                      hoverColor: Colors.white,
                     ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  // поле ввода "Введите фамилию"
+                  TextFormField(
+                    validator: _validationCityResidence,
+                    style: const TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    controller: _cityResidence,
+                    decoration: InputDecoration(
+                      suffixIcon: _userLastName.text.isNotEmpty
+                          ? IconButton(
+                              color: Colors.grey,
+                              onPressed: () {
+                                setState(() {
+                                  _userLastName.clear();
+                                });
+                              },
+                              icon: const Icon(Icons.cancel))
+                          : null,
+                      prefixIcon: const Icon(
+                        LineIcons.city,
+                        color: Colors.grey,
+                      ),
+                      hintText: 'Введите город проживание',
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.white,
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(
+                          16.0,
+                        )),
+                        gapPadding: 4.0,
+                      ),
+                      enabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.white,
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(
+                          16.0,
+                        )),
+                        gapPadding: 4.0,
+                      ),
+                      focusColor: Colors.white,
+                      fillColor: Colors.grey.shade200,
+                      filled: true,
+                      hoverColor: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
                   ),
                 ],
               ),

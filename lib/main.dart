@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         '/important_friends_list': (context) => const ImportantFriendsList(),
         '/friend_profile': (context) => const FriendProfile(),
       },
-      initialRoute: '/user_home',
+      initialRoute: '/user_registration_screen',
     );
   }
 }
