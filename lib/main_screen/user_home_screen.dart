@@ -44,6 +44,13 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                 height: 15,
               ),
               ServiceBarWidget(),
+              SizedBox(
+                height: 15,
+              ),
+              Divider(
+                indent: 26,
+                endIndent: 26,
+              ),
             ],
           )),
         )),
