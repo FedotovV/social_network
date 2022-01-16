@@ -4,7 +4,7 @@ import 'package:vk_app/login_screen/start_screen.dart';
 import 'package:vk_app/main_screen/friend_profile/friend_profile.dart';
 import 'package:vk_app/main_screen/my_profile/avatar_name_info.dart';
 import 'package:vk_app/main_screen/my_profile/set_status.dart';
-import 'login_screen/login_screen.dart';
+import 'login_screen/user_login_screen/login_screen.dart';
 import 'login_screen/registration_screen/registration_screen.dart';
 import 'login_screen/user_editing_screen/user_editing.dart';
 import 'main_screen/my_friends/important_friends_list.dart';

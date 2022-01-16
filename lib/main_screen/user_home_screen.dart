@@ -5,6 +5,7 @@ import 'package:vk_app/main_screen/my_profile/avatar_name_info.dart';
 import 'my_friends/important_friends_list.dart';
 import 'my_friends/information_and_search_widget.dart';
 import 'my_profile/edit_button.dart';
+import 'my_profile/information_city_and_education_widget.dart';
 import 'my_profile/service_bar.dart';
 import 'navigation_drawer.dart';
 
@@ -51,6 +52,17 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                 indent: 26,
                 endIndent: 26,
               ),
+              SizedBox(
+                height: 15,
+              ),
+              InformationCityAndEducationWidget(),
+              SizedBox(
+                height: 15,
+              ),
+              Divider(
+                indent: 26,
+                endIndent: 26,
+              ),
             ],
           )),
         )),
@@ -66,7 +78,8 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
           child: Padding(
             padding: EdgeInsets.only(left: 18.0),
             child: CircleAvatar(
-              backgroundImage: AssetImage('image/photo/foto.jpg'),
+              backgroundImage: NetworkImage(
+                  'https://www.xda-developers.com/files/2018/02/Flutter-Framework-Feature-Image-Background-Colour.png'),
               radius: 6.0,
             ),
           ),
