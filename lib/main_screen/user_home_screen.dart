@@ -5,6 +5,8 @@ import 'package:vk_app/main_screen/my_profile/avatar_name_info.dart';
 import 'my_friends/important_friends_list.dart';
 import 'my_friends/information_and_search_widget.dart';
 import 'my_profile/edit_button.dart';
+import 'my_profile/friend_button.dart';
+import 'my_profile/friend_list_widget.dart';
 import 'my_profile/information_city_and_education_widget.dart';
 import 'my_profile/service_bar.dart';
 import 'navigation_drawer.dart';
@@ -63,6 +65,8 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                 indent: 26,
                 endIndent: 26,
               ),
+              FriendButton(),
+              FriendListWidget(),
             ],
           )),
         )),
