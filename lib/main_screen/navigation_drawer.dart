@@ -8,12 +8,11 @@ class NavigationDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     String name = 'Vyacheslav Fedotov';
     String email = 'fedotov95152@gmail.com';
-    String url =
-        'https://www.xda-developers.com/files/2018/02/Flutter-Framework-Feature-Image-Background-Colour.png';
+    String url = 'image/photo/SF.jpg';
 
     return Drawer(
       child: Material(
-        color: Colors.blueAccent,
+        color: Colors.blue,
         child: ListView(
           children: <Widget>[
             Container(
@@ -34,6 +33,10 @@ class NavigationDrawer extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 children: [
+                  const Divider(color: Colors.white70),
+                  const SizedBox(
+                    height: 16,
+                  ),
                   buildMenuItem(
                       text: 'Редактировать профиль',
                       icon: Icons.edit,
@@ -114,7 +117,7 @@ class NavigationDrawer extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 30,
-              backgroundImage: NetworkImage(urlImage),
+              backgroundImage: AssetImage(urlImage),
             ),
             const SizedBox(
               width: 20,

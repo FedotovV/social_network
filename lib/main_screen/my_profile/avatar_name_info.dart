@@ -12,8 +12,7 @@ class AvatarNameInfo extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const CircleAvatar(
-            backgroundImage: NetworkImage(
-                'https://www.xda-developers.com/files/2018/02/Flutter-Framework-Feature-Image-Background-Colour.png'),
+            backgroundImage: AssetImage('image/photo/SF.jpg'),
             radius: 60.0,
           ),
           const SizedBox(

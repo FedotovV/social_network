@@ -63,46 +63,54 @@ final List<FriendList> _friendList = [
 class _FriendListWidgetState extends State<FriendListWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(8.0),
-      height: 150,
-      width: 385,
-      child: ListView.builder(
-          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-          itemCount: _friendList.length,
-          itemExtent: 90,
-          scrollDirection: Axis.horizontal,
-          shrinkWrap: true,
-          itemBuilder: (BuildContext context, int index) {
-            final friendList = _friendList[index];
-            return Column(
-              children: [
-                CircleAvatar(
-                  backgroundColor: Colors.blue[50],
-                  radius: 35.0,
-                  // Передавать информацию через API
-                  backgroundImage: friendList.imageName,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  friendList.userFirstName,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
+    return InkWell(
+      // Необходимо заменить способ, стоит заглушка, которая сплешит всю
+      // строку друзей (считает как один профиль и обратабыват целую строку)
+      onTap: () {
+        Navigator.pushNamed(context, '/friend_profile');
+      },
+      splashFactory: NoSplash.splashFactory,
+      child: Container(
+        margin: const EdgeInsets.all(8.0),
+        height: 150,
+        width: 385,
+        child: ListView.builder(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+            itemCount: _friendList.length,
+            itemExtent: 90,
+            scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
+            itemBuilder: (BuildContext context, int index) {
+              final friendList = _friendList[index];
+              return Column(
+                children: [
+                  CircleAvatar(
+                    backgroundColor: Colors.blue[50],
+                    radius: 35.0,
+                    // Передавать информацию через API
+                    backgroundImage: friendList.imageName,
                   ),
-                ),
-                Text(
-                  friendList.userLastName,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
+                  const SizedBox(
+                    height: 10,
                   ),
-                ),
-              ],
-            );
-          }),
+                  Text(
+                    friendList.userFirstName,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  Text(
+                    friendList.userLastName,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              );
+            }),
+      ),
     );
   }
 }

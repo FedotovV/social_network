@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:vk_app/main_screen/my_profile/avatar_name_info.dart';
 
-import 'my_friends/important_friends_list.dart';
 import 'my_friends/information_and_search_widget.dart';
 import 'my_profile/edit_button.dart';
 import 'my_profile/friend_button.dart';
@@ -25,7 +24,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
     Scaffold(
         drawer: const NavigationDrawer(),
         appBar: AppBar(
-          backgroundColor: Colors.blueAccent,
+          backgroundColor: Colors.blue,
           title: const Text('Профиль'),
           centerTitle: true,
           // leading: IconButton(
@@ -82,9 +81,8 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
           child: Padding(
             padding: EdgeInsets.only(left: 18.0),
             child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                  'https://www.xda-developers.com/files/2018/02/Flutter-Framework-Feature-Image-Background-Colour.png'),
-              radius: 6.0,
+              backgroundImage: AssetImage('image/photo/SF.jpg'),
+              radius: 8.0,
             ),
           ),
         ),

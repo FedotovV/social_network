@@ -6,7 +6,14 @@ class FriendButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () {},
+      style: TextButton.styleFrom(
+        primary: Colors.white,
+        splashFactory: NoSplash.splashFactory,
+      ),
+      onPressed: () {
+        // необходимо реализовать переход на вкладку "Друзья (2-ой таб)"
+        // Navigator.pushNamed(context, '/');
+      },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Row(

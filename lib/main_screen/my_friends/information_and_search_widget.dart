@@ -275,7 +275,7 @@ class _InformationAndSearchWidgetState
                 IconButton(
                   onPressed: () {},
                   icon: const Icon(LineIcons.phone),
-                  color: Colors.blueAccent[400],
+                  color: Colors.blue,
                   iconSize: 32,
                 ),
                 IconButton(
@@ -284,7 +284,7 @@ class _InformationAndSearchWidgetState
                     Navigator.pushNamed(context, '/user_home');
                   },
                   icon: const Icon(LineIcons.envelope),
-                  color: Colors.blueAccent[400],
+                  color: Colors.blue,
                   iconSize: 32,
                 ),
               ],
