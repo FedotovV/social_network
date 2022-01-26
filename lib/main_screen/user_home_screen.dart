@@ -24,14 +24,50 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
     Scaffold(
         drawer: const NavigationDrawer(),
         appBar: AppBar(
-          backgroundColor: Colors.blue,
-          title: const Text('Профиль'),
+          backgroundColor: Colors.grey.shade50,
+          elevation: 0,
+          titleTextStyle: const TextStyle(
+            color: Colors.blue,
+            fontSize: 14,
+          ),
           centerTitle: true,
-          // leading: IconButton(
-          //   icon: const Icon(Icons.menu),
-          //   onPressed: () {},
-          //   alignment: Alignment.center,
-          // ),
+          title: Column(
+            children: [
+              RichText(
+                text: const TextSpan(
+                  text: 'id139156936',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 2,
+              ),
+              RichText(
+                text: const TextSpan(
+                  text: 'Указать короткое имя',
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          flexibleSpace: Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: IconButton(
+              icon: const Icon(LineIcons.qrcode, size: 28, color: Colors.blue),
+              onPressed: () {},
+              alignment: Alignment.centerRight,
+              color: Colors.blue,
+              splashColor: Colors.white,
+              splashRadius: 0.01,
+            ),
+          ),
         ),
         body: SingleChildScrollView(
           child: Container(

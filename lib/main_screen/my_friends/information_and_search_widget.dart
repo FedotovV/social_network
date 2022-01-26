@@ -49,6 +49,13 @@ var _filterProrile = <Profile>[];
 
 class _InformationAndSearchWidgetState
     extends State<InformationAndSearchWidget> {
+  @override
+  void initState() {
+    _filterProrile = _profile;
+    _searchController.addListener(_searchProfile);
+    super.initState();
+  }
+
   void _searchProfile() {
     if (_searchController.text.isNotEmpty) {
       _filterProrile = _profile.where((Profile profile) {
@@ -60,19 +67,6 @@ class _InformationAndSearchWidgetState
       _filterProrile = _profile;
     }
     setState(() {});
-  }
-
-  @override
-  void dispose() {
-    _searchController.dispose();
-    super.dispose();
-  }
-
-  @override
-  void initState() {
-    _filterProrile = _profile;
-    _searchController.addListener(_searchProfile);
-    super.initState();
   }
 
   @override
